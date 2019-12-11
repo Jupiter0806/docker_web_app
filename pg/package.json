@@ -1,0 +1,23 @@
+{
+  "name": "pg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run build && nodemon dist/",
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "4.17.1",
+    "uuid": "3.3.3",
+    "ta-common": "file:./local_modules/ta-common"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.2",
+    "nodemon": "2.0.1",
+    "typescript": "3.4.3"
+  }
+}
