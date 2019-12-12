@@ -1,0 +1,28 @@
+{
+  "name": "ta-common",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "mocha --require ts-node/register 'lib/**/*.spec.ts'",
+    "build": "tsc",
+    "clear": "rm -r dist/",
+    "ts-node": "ts-node src/"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.2.7",
+    "@types/mocha": "^5.2.7",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
+    "ts-node": "^8.5.4",
+    "typescript": "3.4.3"
+  },
+  "dependencies": {
+    "winston": "^3.2.1"
+  }
+}

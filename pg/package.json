@@ -6,18 +6,24 @@
   "scripts": {
     "start": "npm run build && nodemon dist/",
     "build": "tsc",
-    "dev": "tsc --watch"
+    "dev": "tsc --watch",
+    "ts-node": "ts-node src/"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "4.17.1",
+    "ta-common": "file:../local_modules/ta-common",
     "uuid": "3.3.3",
-    "ta-common": "file:./local_modules/ta-common"
+    "winston": "^3.2.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.2",
     "nodemon": "2.0.1",
+    "ts-node": "^8.5.4",
     "typescript": "3.4.3"
+  },
+  "engines": {
+    "node": "10.17.0"
   }
 }

@@ -1,11 +1,16 @@
 import * as express from 'express';
+import { AppError } from './components/AppError';
 
 class App {
-  public express;
+  public app: express.Express;
 
   constructor () {
-    this.express = express();
+    this.app = express();
     this.mountRoutes();
+  }
+
+  private init(): void {
+
   }
 
   private mountRoutes(): void {
@@ -14,8 +19,12 @@ class App {
       res.json({ message: 'Hello 2' })
     });
 
-    this.express.use('/', router);
+    router.get('/unknown_error', (req, res) => {
+      throw new AppError('unknown error', true);
+    });
+
+    this.app.use('/', router);
   }
 }
 
-export default new App().express;
+export default new App().app;

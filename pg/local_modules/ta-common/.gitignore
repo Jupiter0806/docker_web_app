@@ -1,7 +1,0 @@
-coverage.html
-lib-cov/
-html-report/
-coverage/
-node_modules/istanbul
-node_modules/mocha
-node_modules/mocha-istanbul
