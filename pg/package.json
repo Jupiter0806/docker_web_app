@@ -7,19 +7,28 @@
     "start": "npm run build && nodemon dist/",
     "build": "tsc",
     "dev": "tsc --watch",
-    "ts-node": "ts-node src/"
+    "ts-node": "ts-node src/",
+    "test": "mocha 'dist/**/*.spec.js'"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@hapi/joi": "^16.1.8",
     "express": "4.17.1",
     "ta-common": "file:../local_modules/ta-common",
     "uuid": "3.3.3",
     "winston": "^3.2.1"
   },
   "devDependencies": {
+    "@types/chai": "^4.2.7",
     "@types/express": "^4.17.2",
+    "@types/hapi__joi": "^16.0.4",
+    "@types/mocha": "^5.2.7",
+    "@types/sinon": "^7.5.1",
+    "chai": "^4.2.0",
+    "mocha": "^6.2.2",
     "nodemon": "2.0.1",
+    "sinon": "^7.5.0",
     "ts-node": "^8.5.4",
     "typescript": "3.4.3"
   },
