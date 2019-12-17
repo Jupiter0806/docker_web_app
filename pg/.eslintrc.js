@@ -6,7 +6,10 @@ module.exports = {
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "plugin:mocha/recommended",
+        "plugin:security/recommended",
+        // "plugin:node/recommended"
     ],
     "globals": {
         "Atomics": "readonly",
@@ -18,8 +21,19 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "mocha",
+        "security"
     ],
     "rules": {
+        // "node/exports-style": ["error", "module.exports"],
+        // "node/file-extension-in-import": ["error", "always"],
+        // "node/prefer-global/buffer": ["error", "always"],
+        // "node/prefer-global/console": ["error", "always"],
+        // "node/prefer-global/process": ["error", "always"],
+        // "node/prefer-global/url-search-params": ["error", "always"],
+        // "node/prefer-global/url": ["error", "always"],
+        // "node/prefer-promises/dns": "error",
+        // "node/prefer-promises/fs": "error"
     }
 };
