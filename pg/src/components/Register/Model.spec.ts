@@ -26,29 +26,40 @@ export default class User extends Model {
 describe("Model", () => {
   describe("parses from json", () => {
     it("with all data", () => {
-      const user = {
+      // Arrange
+      const userJson = {
         firstname: "firstname",
         id: "id",
         lastname: "lastname",
         password: "password"
       };
-      sinon.assert.match(User.fromJson(user), user);
+
+      // Act
+      const user = User.fromJson(userJson);
+
+      // Assert
+      sinon.assert.match(user, userJson);
     });
 
     it("with missing data", () => {
-      const user = {
+      // Arrange
+      const userJson = {
         firstname: "firstname",
         id: "id",
         password: "password"
       };
+
       try {
-        User.fromJson(user);
+        // Act
+        User.fromJson(userJson);
       } catch (e) {
+        // Assert
         expect(e.message).includes(`"lastname" is required`);
       }
     });
 
     it("with extra data", () => {
+      // Arrange
       const user = {
         extra: "extra",
         firstname: "firstname",
@@ -56,9 +67,12 @@ describe("Model", () => {
         lastname: "lastname",
         password: "password"
       };
+
       try {
+        // Act
         User.fromJson(user);
       } catch (e) {
+        // Assert
         expect(e.message).includes(`"extra" is not allowed`);
       }
     });
