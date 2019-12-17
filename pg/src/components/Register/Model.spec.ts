@@ -1,48 +1,45 @@
-import { expect } from 'chai';
-import { describe, it } from 'mocha';
-import * as sinon from 'sinon';
-import * as Joi from '@hapi/joi';
+import * as Joi from "@hapi/joi";
+import { expect } from "chai";
+import { describe, it } from "mocha";
+import * as sinon from "sinon";
 
-import Model from './Model';
+import Model from "./Model";
 
 const schema = Joi.object({
-  id: Joi.string().required(),
-  password: Joi.string().required(),
   firstname: Joi.string().required(),
+  id: Joi.string().required(),
   lastname: Joi.string().required(),
+  password: Joi.string().required()
 });
 
 export default class User extends Model {
-  id: string;
-  password: string;
-  firstname: string;
-  lastname: string;
-
   public static fromJson(json: any): User {
     return Model.fromJson(json, schema) as User;
   }
+
+  public firstname: string;
+  public id: string;
+  public lastname: string;
+  public password: string;
 }
 
 describe("Model", () => {
-  describe('parses from json', () => {
-    it('with all data', () => {
+  describe("parses from json", () => {
+    it("with all data", () => {
       const user = {
-        id: 'id',
-        password: 'password',
-        firstname: 'firstname',
-        lastname: 'lastname'
+        firstname: "firstname",
+        id: "id",
+        lastname: "lastname",
+        password: "password"
       };
-      sinon.assert.match(
-        User.fromJson(user),
-        user
-      );
+      sinon.assert.match(User.fromJson(user), user);
     });
 
-    it('with missing data', () => {
+    it("with missing data", () => {
       const user = {
-        id: 'id',
-        password: 'password',
-        firstname: 'firstname',
+        firstname: "firstname",
+        id: "id",
+        password: "password"
       };
       try {
         User.fromJson(user);
@@ -51,19 +48,19 @@ describe("Model", () => {
       }
     });
 
-    it('with extra data', () => {
+    it("with extra data", () => {
       const user = {
-        id: 'id',
-        password: 'password',
-        firstname: 'firstname',
-        lastname: 'lastname',
-        extra: 'extra'
+        extra: "extra",
+        firstname: "firstname",
+        id: "id",
+        lastname: "lastname",
+        password: "password"
       };
       try {
-        User.fromJson(user)
+        User.fromJson(user);
       } catch (e) {
         expect(e.message).includes(`"extra" is not allowed`);
       }
-    })
+    });
   });
 });

@@ -1,4 +1,4 @@
-import * as Joi from '@hapi/joi';
+import * as Joi from "@hapi/joi";
 
 export default class Model {
   public static fromJson(json: any, schema: Joi.ObjectSchema): Model {

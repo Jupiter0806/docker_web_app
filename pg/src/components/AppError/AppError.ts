@@ -12,6 +12,6 @@ export class AppError extends Error {
     // this.httpCode = httpCode;
     this.isOperational = isOperational;
 
-  //   this.stack = new Error().stack;
+    //   this.stack = new Error().stack;
   }
 }
