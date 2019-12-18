@@ -1,17 +1,21 @@
 import * as express from "express";
 import { AppError } from "./components/AppError";
+import * as helmet from "helmet";
 
 class App {
   public app: express.Express;
 
   constructor() {
     this.app = express();
+
+    this.init();
+
     this.mountRoutes();
   }
 
-  // private init(): void {
-
-  // }
+  private init(): void {
+    this.app.use(helmet());
+  }
 
   private mountRoutes(): void {
     const router = express.Router();
