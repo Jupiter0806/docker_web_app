@@ -16,7 +16,7 @@ const schema = Joi.object({
 export enum Role {}
 
 export default class User extends Model {
-  public static fromJson(json: any): User {
+  public static fromJson(json: object): User {
     return Model.fromJson(json, schema) as User;
   }
 
