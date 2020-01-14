@@ -1,3 +1,7 @@
 export enum ErrorCode {
-  INCORRECT_USER_ID = 3
+  INCORRECT_USER_ID = 3,
+
+  NO_USER_RECORD = 10,
+  USER_ID_PASSWORD_NOT_MATCH = 11,
+  USER_EXIST = 13
 }

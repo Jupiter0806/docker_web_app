@@ -1,14 +1,18 @@
-import * as Joi from "@hapi/joi";
-
 import User from "./User";
-import { getDB, AuthProvider, Role } from "../DB";
-import { getPermissions, validateUserId } from "./utils";
+import { getDB, AuthProvider } from "../DB";
+import { getPermissions, validateUserId, wrapResponse } from "./utils";
 import { AppError, ErrorCode } from "../AppError";
 import { ErrorHandler } from "../ErrorHandler";
+import { login } from "../Login";
+import { encrypt } from "../shared/Encrypt";
+
+const _loggerText = "Register";
 
 export async function register(body: object): Promise<object> {
   try {
     const user = User.fromJson(body);
+    const db = getDB();
+    const originalPwd = user.password;
 
     const newUser = {
       firstname: user.firstname,
@@ -29,22 +33,35 @@ export async function register(body: object): Promise<object> {
     }
 
     if (!validateUserId(newUser.id, newUser.provider)) {
-      const error = new AppError(
+      throw new AppError(
         "User ID should be a valid " + AuthProvider[user.provider],
         {
           isOperational: true,
           code: ErrorCode.INCORRECT_USER_ID,
-          logger: "Register"
+          logger: _loggerText
         }
       );
-
-      ErrorHandler.handleError(error);
-
-      return error.toResponse();
     }
 
-    return await getDB().users.set(newUser);
+    if (await db.users.isExist(newUser.id)) {
+      throw new AppError("User exists", {
+        isOperational: true,
+        code: ErrorCode.USER_EXIST,
+        logger: _loggerText
+      });
+    }
+
+    newUser.password = encrypt(newUser.password);
+
+    await db.users.set(newUser);
+
+    return await login({ userId: newUser.id, password: originalPwd });
   } catch (e) {
+    if (e instanceof AppError) {
+      ErrorHandler.handleError(e);
+      return e.toResponse();
+    }
+
     // TODO
     // use global error handler
     if (e.isJoi) {

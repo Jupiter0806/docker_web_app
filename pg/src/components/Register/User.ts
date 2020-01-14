@@ -1,6 +1,6 @@
 import * as Joi from "@hapi/joi";
 
-import Model from "./Model";
+import Model from "../shared/Model";
 
 import { AuthProvider, Role } from "../DB";
 
@@ -25,13 +25,13 @@ export default class User extends Model {
     return Model.fromJson(json, schema) as User;
   }
 
-  public firstname: string;
-  public userId: string;
-  public lastname: string;
-  public password: string;
-  public provider: AuthProvider;
-  public role: Role;
-  public mobileNumber?: string;
-  public address?: string;
-  public avatarUri?: string;
+  public readonly firstname: string;
+  public readonly userId: string;
+  public readonly lastname: string;
+  public readonly password: string;
+  public readonly provider: AuthProvider;
+  public readonly role: Role;
+  public readonly mobileNumber?: string;
+  public readonly address?: string;
+  public readonly avatarUri?: string;
 }

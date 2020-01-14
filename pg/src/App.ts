@@ -5,6 +5,7 @@ import * as bodyParser from "body-parser";
 import { AppError } from "./components/AppError";
 import { initialiseDB, parseDBType } from "./components/DB";
 import { register } from "./components/Register";
+import { login } from "./components/Login";
 
 const db = {
   type: "mongoose",
@@ -49,18 +50,11 @@ class App {
       throw new AppError("unknown error", { isOperational: true });
     });
 
-    // router.get("/db", async (req, res) => {
-    //   const db = getDB();
-    //   const user = await db.users.set({
-    //     firstname: "firstname_2"
-    //   });
-
-    //   res.json(user);
-    // });
-
     router.post("/register", async (req, res) =>
       res.json(await register(req.body))
     );
+
+    router.post("/login", async (req, res) => res.json(await login(req.body)));
 
     this.app.use("/", router);
   }
