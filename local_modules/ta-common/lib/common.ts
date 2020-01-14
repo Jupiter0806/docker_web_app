@@ -1,2 +1,2 @@
 export * from './Utils';
-export { Logger } from './Logger';
+export * from './Logger';
