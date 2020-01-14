@@ -1,4 +1,4 @@
-import AuthProvider from "./AuthProvider";
+import { AuthProvider } from "./AuthProvider";
 import { Session } from "./Session";
 import { Permissions } from "./Permissions";
 import { Image } from "./Image";
@@ -21,17 +21,17 @@ export interface PublicProfile {
 
 export interface User {
   firstname: string;
-  fullname?: string;
-  id?: string; // could be email, phone number, or others depends on provider
-  lastname?: string;
-  password?: string; // encrypt password
-  provider?: AuthProvider;
-  role?: Role;
+  fullname: string;
+  id: string; // could be email, phone number, or others depends on provider
+  lastname: string;
+  password: string; // encrypt password
+  provider: AuthProvider;
+  role: Role;
   mobileNumber?: string;
   address?: string;
   avatar?: Image;
 
-  permissions?: Permissions;
+  permissions: Permissions;
 
   activeSession?: Session;
   sessions?: Array<Session>;

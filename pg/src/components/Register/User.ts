@@ -4,7 +4,7 @@ import Model from "./Model";
 
 const schema = Joi.object({
   firstname: Joi.string().required(),
-  id: Joi.string().required(),
+  userId: Joi.string().required(),
   lastname: Joi.string().required(),
   password: Joi.string().required()
 });
@@ -21,7 +21,7 @@ export default class User extends Model {
   }
 
   public firstname: string;
-  public id: string;
+  public userId: string;
   public lastname: string;
   public password: string;
 }

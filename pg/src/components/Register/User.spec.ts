@@ -14,12 +14,12 @@ describe("Register: User", () => {
       expect(user).property("firstname");
     });
 
-    it("id", () => {
+    it("userId", () => {
       // Act
       const user = new User();
-      user.id = "id";
+      user.userId = "userId";
       // Assert
-      expect(user).property("id");
+      expect(user).property("userId");
     });
 
     it("lastname", () => {

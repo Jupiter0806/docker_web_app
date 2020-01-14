@@ -1,30 +1,27 @@
 import * as mongoose from "mongoose";
 
 import * as Interfaces from "../../Interfaces";
+import * as Schemas from "../Schemas";
 
-const schema = new mongoose.Schema({
-  firstname: String
-});
-
-export interface User extends mongoose.Document {
-  firstname: string;
+export interface User extends mongoose.Document, Interfaces.User {
+  id: string;
 }
 
-const User = mongoose.model<User>("User", schema);
+const User = mongoose.model<User>("User", Schemas.User);
 
 export class Users implements Interfaces.Users {
-  async set(user: Interfaces.User): Promise<Interfaces.User> {
-    const newUser = new User({
-      firstname: user.firstname
-    });
-    await newUser.save();
+  initialNewSession: (id: string) => Promise<Interfaces.User>;
+  isExist: (id: string) => Promise<boolean>;
+  get: (id: string) => Promise<Interfaces.User>;
+  find: (options: Interfaces.UserFindOptions) => Promise<Interfaces.User[]>;
+  update: (
+    id: string,
+    updates: Interfaces.UserUpdates
+  ) => Promise<Interfaces.User>;
 
+  async set(user: Interfaces.User): Promise<Interfaces.User> {
+    const newUser = new User(user);
+    await newUser.save();
     return user;
   }
-
-  initialNewSession: (id: string) => Interfaces.User;
-  isExist: (id: string) => boolean;
-  get: (id: string) => Interfaces.User;
-  find: (options: Interfaces.UserFindOptions) => Interfaces.User[];
-  update: (id: string, updates: Interfaces.UserUpdates) => Interfaces.User;
 }

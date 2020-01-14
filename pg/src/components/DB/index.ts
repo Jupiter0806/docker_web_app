@@ -1,6 +1,8 @@
 import Mongoose from "./Mongoose";
 import { DB, DBOptions } from "./Interfaces";
 
+export * from "./Interfaces";
+
 export enum DBType {
   Mongoose = "mongoose"
 }

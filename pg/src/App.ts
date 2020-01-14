@@ -1,8 +1,10 @@
 import * as express from "express";
 import * as helmet from "helmet";
+import * as bodyParser from "body-parser";
 
 import { AppError } from "./components/AppError";
-import { initialiseDB, parseDBType, getDB } from "./components/DB";
+import { initialiseDB, parseDBType } from "./components/DB";
+import { register } from "./components/Register";
 
 const db = {
   type: "mongoose",
@@ -17,15 +19,17 @@ class App {
   constructor() {
     this.initDB();
 
-    this.app = express();
-
     this.init();
 
     this.mountRoutes();
   }
 
   private init(): void {
+    this.app = express();
+
     this.app.use(helmet());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(bodyParser.json());
   }
 
   private initDB(): void {
@@ -45,14 +49,18 @@ class App {
       throw new AppError("unknown error", true);
     });
 
-    router.get("/db", async (req, res) => {
-      const db = getDB();
-      const user = await db.users.set({
-        firstname: "firstname_2"
-      });
+    // router.get("/db", async (req, res) => {
+    //   const db = getDB();
+    //   const user = await db.users.set({
+    //     firstname: "firstname_2"
+    //   });
 
-      res.json(user);
-    });
+    //   res.json(user);
+    // });
+
+    router.post("/register", async (req, res) =>
+      res.json(await register(req.body))
+    );
 
     this.app.use("/", router);
   }

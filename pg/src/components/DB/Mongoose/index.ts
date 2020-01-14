@@ -18,7 +18,9 @@ export default class implements DB {
   constructor(options: DBOptions) {
     mongoose.connect(options.url, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      // stop warning - DeprecationWarning: collection.ensureIndex is deprecated. Use createIndexes instead.
+      useCreateIndex: true
     });
 
     this._conn = mongoose.connection;
