@@ -2,10 +2,10 @@ import app from "./App";
 // import { AppError } from "./components/AppError";
 import { ErrorHandler } from "./components/ErrorHandler";
 
-import { Logger } from "ta-common";
+import { getLogger } from "ta-common";
 
 const port = process.env.PORT || 3000;
-const logger = Logger.getLogger("index");
+const logger = getLogger("index");
 
 process.on("uncaughtException", (err: Error) => {
   ErrorHandler.handleError(err);

@@ -46,7 +46,7 @@ class App {
 
     router.get("/unknown_error", (/* req, res */) => {
       // this throw won't be caught by uncaughtException and unhandledRejection
-      throw new AppError("unknown error", true);
+      throw new AppError("unknown error", { isOperational: true });
     });
 
     // router.get("/db", async (req, res) => {
