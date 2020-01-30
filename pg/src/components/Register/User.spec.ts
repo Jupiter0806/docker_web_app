@@ -1,41 +1,70 @@
-// import { expect } from "chai";
+import { expect } from "chai";
 import { describe, it } from "mocha";
 import * as sinon from "sinon";
 
 import User from "./User";
+import { AuthProvider, Role } from "../DB";
 
 describe("Register: User", () => {
   describe("has property", () => {
     // User properties are readonly
     // need another way test those
-    // it("firstname", () => {
-    //   // Act
-    //   const user = new User();
-    //   user.firstname = "firstname";
-    //   // Assert
-    //   expect(user).property("firstname");
-    // });
-    // it("userId", () => {
-    //   // Act
-    //   const user = new User();
-    //   user.userId = "userId";
-    //   // Assert
-    //   expect(user).property("userId");
-    // });
-    // it("lastname", () => {
-    //   // Act
-    //   const user = new User();
-    //   user.lastname = "lastname";
-    //   // Assert
-    //   expect(user).property("lastname");
-    // });
-    // it("password", () => {
-    //   // Act
-    //   const user = new User();
-    //   user.password = "password";
-    //   // Assert
-    //   expect(user).property("password");
-    // });
+    it("firstname", () => {
+      // Act
+      const user = User.fromJson({
+        firstname: "firstname",
+        userId: "userId",
+        lastname: "lastname",
+        password: "password",
+        provider: AuthProvider.Email,
+        role: Role.GeneralPublic
+      });
+
+      // Assert
+      expect(user).property("firstname");
+    });
+    it("userId", () => {
+      // Act
+      const user = User.fromJson({
+        firstname: "firstname",
+        userId: "userId",
+        lastname: "lastname",
+        password: "password",
+        provider: AuthProvider.Email,
+        role: Role.GeneralPublic
+      });
+
+      // Assert
+      expect(user).property("userId");
+    });
+    it("lastname", () => {
+      // Act
+      const user = User.fromJson({
+        firstname: "firstname",
+        userId: "userId",
+        lastname: "lastname",
+        password: "password",
+        provider: AuthProvider.Email,
+        role: Role.GeneralPublic
+      });
+
+      // Assert
+      expect(user).property("lastname");
+    });
+    it("password", () => {
+      // Act
+      const user = User.fromJson({
+        firstname: "firstname",
+        userId: "userId",
+        lastname: "lastname",
+        password: "password",
+        provider: AuthProvider.Email,
+        role: Role.GeneralPublic
+      });
+
+      // Assert
+      expect(user).property("password");
+    });
   });
 
   describe("get instance from json", () => {
@@ -43,9 +72,11 @@ describe("Register: User", () => {
       // Arrange
       const userJson = {
         firstname: "firstname",
-        id: "id",
+        userId: "userId",
         lastname: "lastname",
-        password: "password"
+        password: "password",
+        provider: AuthProvider.Email,
+        role: Role.GeneralPublic
       };
 
       // Act
