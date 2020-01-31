@@ -84,14 +84,4 @@ describe("Register: utils", () => {
       expect(utils.validateUserId("123@gmail", AuthProvider.Email)).false;
     });
   });
-
-  describe("wrapResponse", () => {
-    it("wraps response into standard response", () => {
-      const res = {};
-      sinon.assert.match(utils.wrapResponse(res, "user"), {
-        status: { code: 0, message: "" },
-        user: res
-      });
-    });
-  });
 });

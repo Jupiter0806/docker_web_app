@@ -66,10 +66,3 @@ export function validateUserId(id: string, provider: AuthProvider): boolean {
       return validateEmail(id);
   }
 }
-
-export function wrapResponse(res: object, name: string): object {
-  return {
-    status: { code: 0, message: "" },
-    [name.toString()]: res
-  };
-}
