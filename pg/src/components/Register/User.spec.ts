@@ -7,8 +7,6 @@ import { AuthProvider, Role } from "../DB";
 
 describe("Register: User", () => {
   describe("has property", () => {
-    // User properties are readonly
-    // need another way test those
     it("firstname", () => {
       // Act
       const user = User.fromJson({
