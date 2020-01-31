@@ -4,6 +4,7 @@ import { compare } from "../shared/Encrypt";
 import { AppError } from "../AppError";
 import { ErrorCode } from "../AppError";
 import { ErrorHandler } from "../ErrorHandler";
+import { wrapResponse } from "../shared/Response";
 
 const _loggerText = "Login";
 
@@ -22,17 +23,17 @@ export async function login(body: object): Promise<object> {
       });
     }
 
-    return {
-      status: { code: 0, message: "" },
-      user: {
+    return wrapResponse(
+      {
         id: user.id,
         firstname: user.firstname,
         lastname: user.lastname,
         fullname: user.fullname,
         role: user.role,
         permissions: user.permissions
-      }
-    };
+      },
+      "user"
+    );
   } catch (e) {
     if (e instanceof AppError) {
       ErrorHandler.handleError(e);
