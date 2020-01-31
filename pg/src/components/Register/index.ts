@@ -1,6 +1,6 @@
 import User from "./User";
 import { getDB, AuthProvider } from "../DB";
-import { getPermissions, validateUserId, wrapResponse } from "./utils";
+import { getPermissions, validateUserId } from "./utils";
 import { AppError, ErrorCode } from "../AppError";
 import { ErrorHandler } from "../ErrorHandler";
 import { login } from "../Login";

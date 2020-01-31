@@ -9,6 +9,7 @@
     "dev": "tsc --watch",
     "pretest": "npm run build",
     "test": "mocha 'dist/**/*.spec.js'",
+    "test:single": "mocha -r ts-node/register",
     "test:cover": "nyc mocha --opts mochaOpts/coverage.opts 'src/**/*.spec.ts'",
     "lint": "eslint 'src/**/*.ts'"
   },
