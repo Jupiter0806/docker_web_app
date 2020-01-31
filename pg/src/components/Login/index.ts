@@ -40,10 +40,17 @@ export async function login(body: object): Promise<object> {
       return e.toResponse();
     }
 
-    // TODO
-    // use global error handler
     if (e.isJoi) {
-      return { message: e.details.map(item => item.message) };
+      const appError = new AppError(
+        e.details.map(item => item.message),
+        {
+          isOperational: true,
+          code: ErrorCode.WRONG_PAYLOAD_STRUCTURE,
+          logger: _loggerText
+        }
+      );
+      ErrorHandler.handleError(appError);
+      return appError.toResponse();
     }
 
     return e;

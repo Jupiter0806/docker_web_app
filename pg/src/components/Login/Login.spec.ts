@@ -33,6 +33,12 @@ describe("Login", () => {
     _sandbox.restore();
   });
 
+  it("validates body", async () => {
+    expect(await login({}))
+      .property("status")
+      .property("code", ErrorCode.WRONG_PAYLOAD_STRUCTURE);
+  });
+
   it("calls Credential.fromJson", async () => {
     const credentialFromJsonSpy = _sandbox.spy(Credential, "fromJson");
     const credential = {

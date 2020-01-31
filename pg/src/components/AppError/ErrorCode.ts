@@ -1,4 +1,5 @@
 export enum ErrorCode {
+  WRONG_PAYLOAD_STRUCTURE = 2,
   INCORRECT_USER_ID = 3,
 
   NO_USER_RECORD = 10,

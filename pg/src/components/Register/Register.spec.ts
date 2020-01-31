@@ -35,6 +35,12 @@ describe("Register", () => {
     _sandbox.restore();
   });
 
+  it("validates body", async () => {
+    expect(await register({}))
+      .property("status")
+      .property("code", ErrorCode.WRONG_PAYLOAD_STRUCTURE);
+  });
+
   it("calls User.fromJson to validate and create user", async () => {
     const userFromJsonSpy = _sandbox.spy(User, "fromJson");
     const user = {
